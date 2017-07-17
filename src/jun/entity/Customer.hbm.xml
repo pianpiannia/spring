@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+<hibernate-mapping>
+
+	<class name="jun.entity.Customer" table="t_customer2">	
+		<id name="cid" column="cid">
+			<generator class="native"></generator>
+		</id>
+		<!-- 配置其他属性和表字段对应 -->
+		<property name="custName" column="custName"></property>
+		<!-- <property name="custLevel" column="custLevel"></property> -->
+		<property name="custSource" column="custSource"></property>
+		<property name="custPhone" column="custPhone"></property>
+		<property name="custMobile" column="custMobile"></property>
+		
+		<set name="setLinkMan">
+			<key column="clid"></key>
+			<one-to-many class="jun.entity.LinkMan"/>
+		</set>
+		
+		<set name="setCusVisit">
+			<key column="cvid"></key>
+			<one-to-many class="jun.entity.Visit"/>
+		</set>
+		<!-- 所属级别 -->
+		<many-to-one name="dictCustLevel" class="jun.entity.Dict" column="custLevel"></many-to-one>
+	</class>
+</hibernate-mapping>
